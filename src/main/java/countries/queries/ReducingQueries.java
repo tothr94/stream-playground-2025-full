@@ -9,6 +9,16 @@ import java.util.function.BinaryOperator;
  */
 public interface ReducingQueries {
     /**
+     * {@return the greatest population}
+     */
+    Optional<Long> getGreatestPopulationAsOptional();
+
+    /**
+     * {@return the greatest population}
+     */
+    Long getGreatestPopulationAsLong();
+
+    /**
      * {@return the total area of the countries}
      */
     Optional<BigDecimal> getTotalAreaAsOptional();

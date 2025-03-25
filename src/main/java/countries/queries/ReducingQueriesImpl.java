@@ -11,6 +11,27 @@ public class ReducingQueriesImpl
         extends CountryRepository
         implements ReducingQueries {
 
+    @Override
+    public Optional<Long> getGreatestPopulationAsOptional() {
+        this.getAll()
+                .stream()
+                .map(Country::population)
+                .max(Long::compareTo);
+
+        return this.getAll()
+                .stream()
+                .map(Country::population)
+                .reduce((a, b) -> a > b ? a : b);
+    }
+
+    @Override
+    public Long getGreatestPopulationAsLong() {
+        return this.getAll()
+                .stream()
+                .map(Country::population)
+                .reduce((a, b) -> a > b ? a : b)
+                .orElseThrow(IllegalStateException::new);
+    }
 
     @Override
     public Optional<BigDecimal> getTotalAreaAsOptional() {
